@@ -6,17 +6,21 @@ const supabase = createClient("https://voikpdiypqnulhscibme.supabase.co","eyJhbG
 const stripe = new Stripe('sk_test_51Rx0fjDakjho3yKVRUjNARYAKsWSi7Ldo3phg86qDGIYc7pQm7DZdqbJnb20rhPNkRqFxSSEWRaAsvMdc4lpqo0K00tXDfrbfy')
 
 
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
+
 
 
 export default async function handler(req,res){
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-  if (req.method === 'OPTIONS') {
-    // preflight request
-    return res.status(200).end();
-  }
 
 
     const priceIds = {
