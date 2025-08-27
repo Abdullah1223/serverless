@@ -5,7 +5,20 @@ const supabase = createClient("https://voikpdiypqnulhscibme.supabase.co","eyJhbG
 
 const stripe = new Stripe('sk_test_51Rx0fjDakjho3yKVRUjNARYAKsWSi7Ldo3phg86qDGIYc7pQm7DZdqbJnb20rhPNkRqFxSSEWRaAsvMdc4lpqo0K00tXDfrbfy')
 
+
+
+
 export default async function handler(req,res){
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    // preflight request
+    return res.status(200).end();
+  }
+
+
     const priceIds = {
         'pro':"price_1S0hgYDakjho3yKVUN3foWWk",
         'starter':"price_1S0hh0Dakjho3yKViRNDgBdi"
